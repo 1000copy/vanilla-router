@@ -1,0 +1,24 @@
+{
+  "name": "simple-vanila-router",
+  "version": "1.0.0",
+  "description": "This is the illustration of SPA(Single Page Routing) using Vanilla JavaScript.\r Check out the article on medium from [here](https://medium.com/@am_pra_veen/implementing-simple-spa-routing-using-vanilla-javascript-53abe399bf3c).",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/praveen-me/simple-vanila-router.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/praveen-me/simple-vanila-router/issues"
+  },
+  "homepage": "https://github.com/praveen-me/simple-vanila-router#readme",
+  "dependencies": {
+    "json2html.js": "^1.0.3",
+    "node-json2html": "^1.4.0"
+  }
+}

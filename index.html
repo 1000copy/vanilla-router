@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vanilla Router</title>
+  <script type="module">
+    import {render as reco} from './reco.js'
+    import {render} from './rita.js'
+    import {render as plus1,event} from './plus1.js'
+    class Reco{
+      constructor (element,win,routes){
+        this.element = element
+        this.win = win
+        win.nav = this.nav.bind(this)
+        this.routes = routes
+        win.onpopstate = () => {
+          this.refresh()
+        }
+        this.refresh()
+      }
+      refresh(pathname){
+        const rootDiv = document.getElementById(this.element);
+        rootDiv.innerHTML = this.routes[pathname||window.location.pathname]
+        this.bind()
+      } 
+      bind(){
+        var json = event()
+        for (const [key, value] of Object.entries(json)) {
+            bind1(key,value)
+        }                
+        function bind1(key1,value1){
+          var inc = document.getElementById(key1)
+          for (const [key, value] of Object.entries(value1)) {
+            inc && inc.addEventListener(key, value);
+          }        
+        }
+      }
+      nav(pathname){
+        window.history.pushState({},pathname,window.location.origin + pathname)
+        this.refresh(pathname)
+        return false
+      }
+    }
+    var r = new Reco('root', window,{  
+          '/' : 'default page',
+          '/reco' : reco(),
+          '/rita1' : render(),
+          '/plus1' : plus1(),
+        })
+    // r.refresh()
+    // window.nav = (pathname) => {
+    //   window.history.pushState({},pathname,window.location.origin + pathname)
+    //   refresh(pathname)
+    //   return false
+    // }
+    // window.onpopstate = () => {
+    //   refresh()
+    // }
+    // function refresh(pathname){
+    //   const rootDiv = document.getElementById('root');
+    //   rootDiv.innerHTML = routes[pathname||window.location.pathname]
+    // }
+  </script>
+</head>
+<body>
+    <ul class="navbar-list">
+      <li class="navbar-item"><a href="#" onclick="return nav('/reco');">reco</a></li>
+      <li class="navbar-item"><a href="#" onclick="return nav('/');">home</a></li>
+      <li class="navbar-item"><a href="#" onclick="return nav('/rita1');">rita1</a></li>
+      <li class="navbar-item"><a href="#" onclick="return nav('/plus1');">plus1</a></li>
+    </ul>    
+  <div id="root"></div>
+  
+</body>
+</html>
